@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}ジャンプ一覧{% endblock %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 20px;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Regitered_date</th>>
+                <th>Group</th>
+                <th>Event</th>
+                <th>Unique_entry</th>
+                <th>Height</th>
+                <th>Distance</th>
+                <th>Landing_speed</th>
+                <th>Score</th>
+                <th>Comment</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jump in jumps %}
+            <tr>
+                <td>{{jump.id}}</td>
+                <td>{{jump.registered_date}}</td>
+                <td>{{jump.group}}</td>
+                <td>{{jump.event}}</td>
+                <td>{{jump.unique_entry}}</td>
+                <td>{{jump.height}}</td>
+                <td>{{jump.distance}}</td>
+                <td>{{jump.landing_speed}}</td>
+                <td>{{jump.score}}</td>
+                <td>{{jump.comment}}</td>
+                <td>
+                    <form class="delete" method="post">{% csrf_token %}
+                        <button class="btn btn-primary" type="submit" name="d_id" value={{jump.id}}>削除</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock%}
